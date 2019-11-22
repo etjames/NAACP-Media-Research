@@ -63,7 +63,6 @@ class HeraldSpiderCrawler(CrawlSpider):
         tags = []
 
         for paragraph in response.xpath('//div[@class="body-copy"]/p'):
-            print('option1')
             try:
                 text = paragraph.xpath('text()').getall()
                 items.append(text)
@@ -71,7 +70,6 @@ class HeraldSpiderCrawler(CrawlSpider):
                 pass
             
         for paragraph in response.xpath('//div[@class="content-body"]/p'):
-            print('option2')
             try:
                 text = paragraph.xpath('text()').getall()
                 items.append(text)
@@ -79,7 +77,6 @@ class HeraldSpiderCrawler(CrawlSpider):
                 pass    
 
         for paragraph in response.xpath('//div[@class="field-item"]/p'):
-            print('option3')
             try:
                 text = paragraph.xpath('text()').getall()
                 items.append(text)
@@ -87,7 +84,6 @@ class HeraldSpiderCrawler(CrawlSpider):
                 pass
         
         for paragraph in response.xpath('//div[@class="field-items"]//p'):
-            print('option4')
             try:
                 text = paragraph.xpath('text()').getall()
                 items.append(text)
@@ -123,6 +119,4 @@ class HeraldSpiderCrawler(CrawlSpider):
                 for tag in tags:
                     collection_by_tag = db[tag.lower().replace(" ", "_")]
                     collection_by_tag.insert_one(document)
-            print('hello')
-            print (document)
             return document

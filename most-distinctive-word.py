@@ -42,11 +42,13 @@ def run_tfidf(files):
     feature_names = np.array(idf.get_feature_names())
 
     Answer_List = []
+    # in each region
     for key in files:
+        # each article in this region
         for article in files[key]:
             article = article.split(" ")
             response = idf.transform(article)
-            sorted_nzs = np.argsort(response.data)[:-(5 + 1):-1]  # 5 means top_n words
+            sorted_nzs = np.argsort(response.data)[:-(5 + 1):-1]  # 5 = top_n words
             Answer_List.append(feature_names[response.indices[sorted_nzs]])
 
     print('\n'.join(map(str, Answer_List)))

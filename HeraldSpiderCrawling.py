@@ -1,8 +1,8 @@
-from datetime import datetime as dt
 from scrapy.spiders import Rule, CrawlSpider
 from scrapy.linkextractors import LinkExtractor
 from pymongo import MongoClient
 import re
+
 
 def getTags(s):
     
@@ -22,6 +22,7 @@ def getTags(s):
     
     return tags
 
+
 class MongoDB:
     """
     we need to create a single persistent connection to database.
@@ -38,6 +39,7 @@ class MongoDB:
     def get_client(self, db_name):
         return self.db[db_name]
 
+
 class HeraldSpiderCrawler(CrawlSpider):
     name = 'heraldcrawler_update'
 
@@ -45,7 +47,6 @@ class HeraldSpiderCrawler(CrawlSpider):
 
     allowed_domains = ["bostonherald.com"]
     start_urls = ['https://www.bostonherald.com/news/local-news', 'http://www.bostonherald.com/news_opinion/local_coverage', 'http://www.bostonherald.com/news/local_coverage']
-   # start_urls = ['http://www.bostonherald.com/news/local_coverage']
 
     custom_settings = {
         'DEPTH_LIMIT': 2
@@ -54,8 +55,8 @@ class HeraldSpiderCrawler(CrawlSpider):
         Rule(LinkExtractor(allow = (), restrict_xpaths = (['//h4[@class="entry-title"]',
                                                            '//span[@class="sub-section"]/h1',
                                                            '//h2[@class="node-title"]'])),
-        callback = "parse_items",
-        follow = True),
+        callback="parse_items",
+        follow=True),
     )
 
     def parse_items(self, response):

@@ -57,7 +57,7 @@ def run_tfidf(files):
             currAreaList.extend(article)
 
         response = idf.transform(currAreaList)
-        sorted_nzs = np.argsort(response.data)[:-(30 + 1):-1]  # top_20 keywords
+        sorted_nzs = np.argsort(response.data)[:-(30 + 1):-1]  # top_30 keywords
         Answer_List.append(feature_names[response.indices[sorted_nzs]])
         currAreaList.clear()
 

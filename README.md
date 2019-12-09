@@ -5,4 +5,4 @@ To scrape The Boston Herald Website, use the HeraldSpiderCrawling.py and follow 
 json, csv, etc.
 
 To analyze the data, run the python file most-distinctive-word.py, updating the file pathway to be where you store the data 
-files.
+files. This will give you an output of the 30 most common words relative to the articles discussing each particular neighborhood.
